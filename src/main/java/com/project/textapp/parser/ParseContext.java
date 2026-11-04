@@ -1,13 +1,19 @@
 package com.project.textapp.parser;
-import com.project.textapp.model.impl.TextBranch;
-import com.project.textapp.model.AbstractTextComponent;
+import com.project.textapp.model.TextComposite;
+
 public class ParseContext {
     private final String source;
-    private AbstractTextComponent result;
+    private TextComposite result;
     public ParseContext(String source) {
         this.source = source;
     }
-    public String getSource() { return source; }
-    public AbstractTextComponent getResult() { return result; }
-    public void setResult(AbstractTextComponent result) { this.result = result; }
+    public String getSource() {
+        return source;
+    }
+    public TextComposite getResult() {
+        return result;
+    }
+    public void setResult(TextComposite result) {
+        this.result = result;
+    }
 }

@@ -1,27 +1,33 @@
 package com.project.textapp.parser;
 import com.project.textapp.exception.TextProcessingException;
-import com.project.textapp.model.AbstractTextComponent;
-import com.project.textapp.model.impl.TextBranch;
+import com.project.textapp.model.TextComponent;
 import com.project.textapp.parser.impl.LexemeParserImpl;
 import com.project.textapp.parser.impl.ParagraphParserImpl;
 import com.project.textapp.parser.impl.SentenceParserImpl;
-import com.project.textapp.parser.impl.WordSymbolParserImpl;
+import com.project.textapp.parser.impl.WordParserImpl;
 
 public class TextParserChain {
-    private final TextComponentParser first;
+    private final TextParser first;
     public TextParserChain() {
+        TextParser parserChain = new ParagraphParserImpl(
+                new SentenceParserImpl(
+                        new LexemeParserImpl(
+                                new WordParserImpl(
+                                        new SymbolParser()))));
         ParagraphParserImpl paragraphs = new ParagraphParserImpl();
         SentenceParserImpl sentences = new SentenceParserImpl();
         LexemeParserImpl lexemes = new LexemeParserImpl();
-        WordSymbolParserImpl words = new WordSymbolParserImpl();
-        paragraphs.setNext(sentences); sentences.setNext(lexemes); lexemes.setNext(words);
+        WordParserImpl words = new WordParserImpl();
+        paragraphs.setNext(sentences);
+        sentences.setNext(lexemes);
+        lexemes.setNext(words);
         first = paragraphs;
     }
-    public AbstractTextComponent parse(String source) throws TextProcessingException {
+    public TextComponent parse(String source) throws TextProcessingException {
         if (source == null) throw new TextProcessingException("No source text found");
         ParseContext context = new ParseContext(source);
         try {
-            first.parse(context);
+            first.parse(source, context);
         }
         catch (IllegalStateException e)
         {
