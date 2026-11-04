@@ -7,7 +7,6 @@ import com.project.textapp.model.ElementType;
 import com.project.textapp.model.TextComposite;
 import com.project.textapp.model.TextCharacter;
 import com.project.textapp.model.TextComponent;
-import com.project.textapp.parser.ParseContext;
 import com.project.textapp.parser.TextParser;
 
 public class WordParserImpl extends AbstractTextParser {

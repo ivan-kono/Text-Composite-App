@@ -1,6 +1,5 @@
 package com.project.textapp.service;
 import com.project.textapp.model.TextComponent;
-import com.project.textapp.parser.TextParserChain;
 import com.project.textapp.service.impl.TextTasksServiceImpl;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
